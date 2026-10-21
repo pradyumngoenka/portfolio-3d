@@ -203,8 +203,8 @@ function resize() {
   renderer.setSize(w, h, false);
   camera.aspect = w / h; camera.updateProjectionMatrix();
   const mob = w < 520;
-  baseCam.set(mob ? 0.5 : 0.1, mob ? 1.2 : 1.04, mob ? 6.4 : 4.7);
-  baseTgt.set(mob ? 0.85 : 0.45, mob ? 0.82 : 0.94, 0);
+  baseCam.set(mob ? 0.5 : 0.1, mob ? 1.5 : 1.46, mob ? 6.4 : 4.7);
+  baseTgt.set(mob ? 0.85 : 0.45, mob ? 1.0 : 1.05, 0);
 }
 resize(); addEventListener('resize', resize);
 let mx = 0, my = 0, lastPtr = 0, hYaw = 0, hPitch = 0;
