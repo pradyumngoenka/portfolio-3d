@@ -1,0 +1,5 @@
+3D avatar: "Businessman 01" from models.codelove.in (Rigged Professions collection)
+Source: https://models.codelove.in/models/business-male-01/
+License: MIT (commercial use, modification and redistribution allowed; copyright notice and license text kept with the files)
+Animation clips: models.codelove.in animation library (walk, idle, gestic_talk, wave, look) merged into assets/avatar_rigged.glb
+Voice: Microsoft Edge neural TTS (en-IN-PrabhatNeural), generated locally, free tier.

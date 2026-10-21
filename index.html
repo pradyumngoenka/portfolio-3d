@@ -179,12 +179,6 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
 /* avatar walk-in + talk */
 .hero-figure{animation:walkIn 1.7s cubic-bezier(.22,.8,.3,1) .3s both}
 @keyframes walkIn{from{transform:translateX(60vw);opacity:0}to{transform:none;opacity:1}}
-.hero-figure model-viewer,.hero-figure img{animation:idleFloat 6s ease-in-out 2.2s infinite}
-@keyframes idleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.hero-figure.walking model-viewer{animation:bob .42s ease-in-out 4,idleFloat 6s ease-in-out 2.2s infinite}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(.6deg)}}
-.hero-figure.talking model-viewer{animation:talk .5s ease-in-out infinite}
-@keyframes talk{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .intro-btn{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);background:rgba(22,12,7,.5);border:1px solid rgba(255,240,225,.4);border-radius:999px;padding:10px 18px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px)}
 .intro-btn:hover{background:rgba(22,12,7,.75)}
 .intro-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-bright)}
@@ -198,7 +192,7 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:980px){
-  nav{padding:16px 20px}
+  nav{padding:16px 20px;gap:14px}
   .logo{white-space:nowrap;font-size:14px}
   .nav-links{gap:16px}
   .nav-links a{font-size:9px;letter-spacing:.16em}
@@ -230,7 +224,8 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
   .hsk{font-size:7.5px;letter-spacing:.16em}
 }
 @media (max-width:420px){
-  .nav-links{gap:11px}
+  nav{padding:14px 14px;gap:10px}
+  .nav-links{gap:10px}
   .nav-links a{font-size:8px;letter-spacing:.12em}
   .logo{font-size:13px}
 }
@@ -269,9 +264,9 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
     <div class="hero-figure">
       <div class="floor"></div>
       <span class="float-tag float-stat">&#8377;30K+ cash prizes</span>
-      <button class="intro-btn" id="introBtn" type="button" style="display:none"><span class="dot"></span><span id="introBtnTxt">Hear my intro</span></button>
+      <button class="intro-btn" id="introBtn" type="button"><span class="dot"></span><span id="introBtnTxt">Hear my intro</span></button>
       <div class="caption" id="caption"></div>
-      <model-viewer id="avatarMv" src="assets/avatar.glb" alt="3D avatar of Pradyumn Goenka" auto-rotate rotation-per-second="8deg" camera-orbit="180deg 82deg auto" min-camera-orbit="auto 60deg auto" max-camera-orbit="auto 100deg auto" camera-controls disable-zoom shadow-intensity="0" environment-image="neutral" exposure="1.1" tone-mapping="commerce" interaction-prompt="none"></model-viewer>
+      <model-viewer id="avatarMv" src="assets/avatar_rigged.glb" alt="3D avatar of Pradyumn Goenka" autoplay animation-name="idle" camera-orbit="0deg 82deg auto" min-camera-orbit="auto 60deg auto" max-camera-orbit="auto 100deg auto" camera-controls disable-zoom shadow-intensity="0" environment-image="neutral" exposure="1.1" tone-mapping="commerce" interaction-prompt="none"></model-viewer>
     </div>
   </div>
   <div class="scroll-hint">Scroll<span class="line"></span></div>
@@ -464,21 +459,21 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.targe
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // walk phase then idle
 const fig=document.querySelector('.hero-figure');
-fig.classList.add('walking');
-setTimeout(()=>fig.classList.remove('walking'),2100);
+const avatarMv=document.getElementById('avatarMv');
+avatarMv.addEventListener('load',()=>{avatarMv.animationName='walk';setTimeout(()=>{avatarMv.animationName='idle'},2000)});
 // intro audio (tap-to-play; browsers block autoplay)
 const introBtn=document.getElementById('introBtn'),introTxt=document.getElementById('introBtnTxt'),cap=document.getElementById('caption');
 const introAudio=new Audio('assets/intro.mp3');
-const lines=[[0,"Hi, I'm Pradyumn Goenka."],[2500,"Final-year B.Com student at St. Xavier's College, Kolkata."],[7000,"I work on strategy, partnerships and analytics - most recently onboarding restaurant partners at Swiggy."],[14500,"Take a look around."]];
+const lines=[[0,"Hello, I'm Pradyumn Goenka."],[2000,"I'm a final-year B.Com student at St. Xavier's College, Kolkata."],[7500,"I'm passionate about marketing, finance, and AI."],[12300,"Welcome to my portfolio."]];
 let timers=[];
 introBtn.addEventListener('click',()=>{
   if(!introAudio.paused){introAudio.pause();introAudio.currentTime=0;endIntro();return}
   introBtn.classList.add('playing');introTxt.textContent='Stop';
-  fig.classList.add('talking');
+  avatarMv.animationName='talk';
   introAudio.play().catch(()=>endIntro());
   timers=lines.map(([t,txt])=>setTimeout(()=>{cap.textContent=txt;cap.classList.add('show')},t));
 });
-function endIntro(){introBtn.classList.remove('playing');introTxt.textContent='Hear my intro';fig.classList.remove('talking');cap.classList.remove('show');timers.forEach(clearTimeout);timers=[]}
+function endIntro(){introBtn.classList.remove('playing');introTxt.textContent='Hear my intro';avatarMv.animationName='idle';cap.classList.remove('show');timers.forEach(clearTimeout);timers=[]}
 introAudio.addEventListener('ended',endIntro);
 
 // nav adapts to light sections
