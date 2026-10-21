@@ -171,3 +171,6 @@ footer{border-top:1px solid rgba(244,236,220,.12);padding:1.6rem 0;display:flex;
   .scroll-cue{display:none}
   .ce-card{padding:2rem}
 }
+
+.xp-logo.fill,.op-logo.fill{background:transparent}
+.xp-logo.fill img,.op-logo.fill img{width:100%;height:100%;object-fit:cover}
