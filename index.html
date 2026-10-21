@@ -54,8 +54,8 @@ nav.solid{background:transparent}
 /* ---------- HERO ---------- */
 #hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;
   background:radial-gradient(ellipse 75% 85% at 72% 42%,var(--bg-glow) 0%,var(--bg) 52%,var(--bg-deep) 100%)}
-.hero-inner{width:100%;max-width:1440px;margin:0 auto;padding:120px 44px 90px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;align-items:center;position:relative;z-index:2}
-.hero-copy{max-width:640px}
+.hero-inner{width:100%;max-width:1440px;min-height:100vh;margin:0 auto;padding:120px 44px 90px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;align-items:center;position:relative;z-index:2}
+.hero-copy{max-width:640px;position:relative;z-index:3}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--peach);margin-bottom:34px}
 .hero-name{font-family:var(--serif);font-weight:500;font-size:clamp(64px,8.6vw,124px);line-height:.98;letter-spacing:-.015em;color:var(--cream);margin-bottom:38px}
 .tagline{font-family:var(--serif);font-size:clamp(22px,2.3vw,32px);line-height:1.3;font-weight:500;color:var(--cream);margin-bottom:34px;max-width:540px}
@@ -67,13 +67,13 @@ nav.solid{background:transparent}
 .badge{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);border:1px solid rgba(255,240,225,.38);border-radius:999px;padding:9px 18px}
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-bright);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero-figure{position:relative;display:flex;justify-content:center;align-items:flex-end;min-height:420px}
+.hero-figure{position:absolute;inset:0;z-index:1;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
 .hero-figure .floor{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);width:78%;height:90px;background:radial-gradient(ellipse at center,rgba(255,190,140,.4) 0%,rgba(255,190,140,0) 70%);border-radius:50%}
 .hero-figure img{position:relative;z-index:2;width:min(100%,430px);height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(60,18,2,.45))}
-#hero3d{position:relative;z-index:2;width:min(100%,520px);height:600px}
+#hero3d{position:absolute;inset:0;z-index:2;width:100%;height:100%}
 #hero3d canvas{display:block;width:100%!important;height:100%!important}
 .float-tag{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mono-dim)}
-.float-stat{top:5%;right:4%}
+.float-stat{top:14%;right:5%}
 .scroll-hint{position:absolute;bottom:34px;right:44px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mono-dim)}
 .scroll-hint .line{width:1px;height:38px;background:linear-gradient(var(--mono-dim),transparent);animation:drip 2s infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -181,11 +181,11 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
 /* avatar walk-in + talk */
 
 @keyframes walkIn{from{transform:translateX(60vw);opacity:0}to{transform:none;opacity:1}}
-.intro-btn{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);background:rgba(22,12,7,.5);border:1px solid rgba(255,240,225,.4);border-radius:999px;padding:10px 18px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px)}
+.intro-btn{pointer-events:auto;position:absolute;bottom:34px;left:auto;right:7%;transform:none;z-index:5;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);background:rgba(22,12,7,.5);border:1px solid rgba(255,240,225,.4);border-radius:999px;padding:10px 18px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px)}
 .intro-btn:hover{background:rgba(22,12,7,.75)}
 .intro-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-bright)}
 .intro-btn.playing .dot{animation:pulse 1s infinite}
-.caption{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);z-index:5;width:min(92%,360px);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;line-height:1.8;text-transform:uppercase;color:var(--cream);background:rgba(22,12,7,.62);border:1px solid rgba(255,240,225,.25);border-radius:8px;padding:12px 16px;opacity:0;transition:opacity .4s;text-align:center;pointer-events:none}
+.caption{position:absolute;bottom:96px;left:auto;right:5%;transform:none;z-index:5;width:min(92%,360px);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;line-height:1.8;text-transform:uppercase;color:var(--cream);background:rgba(22,12,7,.62);border:1px solid rgba(255,240,225,.25);border-radius:8px;padding:12px 16px;opacity:0;transition:opacity .4s;text-align:center;pointer-events:none}
 .caption.show{opacity:1}
 
 /* reveal */
@@ -203,10 +203,12 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
   .eyebrow{margin-bottom:22px}
   .hero-name{font-size:clamp(52px,15vw,84px);margin-bottom:26px}
   .hero-bio{max-width:none;margin-bottom:32px}
-  .hero-figure{min-height:0;margin-top:18px;padding-bottom:10px;overflow:visible}
+  .hero-figure{position:relative;inset:auto;min-height:0;margin-top:18px;padding-bottom:10px;overflow:visible;pointer-events:auto}
   .hero-figure img{width:min(78%,340px);margin:0 auto}
-  #hero3d{height:480px;width:100%}
+  #hero3d{position:relative;inset:auto;height:480px;width:100%}
   .hero-figure .floor{bottom:0}
+  .intro-btn{bottom:-6px;left:50%;right:auto;transform:translateX(-50%)}
+  .caption{bottom:52px;left:50%;right:auto;transform:translateX(-50%)}
   .float-stat{display:none}
   .scroll-hint{display:none}
   .wrap{padding:80px 24px}
