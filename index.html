@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 </nav>
 
 <section id="hero">
-  <video autoplay muted loop playsinline poster="assets/hero-video-poster.jpg" src="assets/hero-video.mp4"></video>
+  <video id="heroVid" autoplay muted loop playsinline poster="assets/hero-video-poster.jpg" src="assets/hero-video.mp4?v=2"></video>
   <div class="veil"></div>
   <div class="hero-dsk">
       <div class="hd-scrim"></div>
@@ -48,6 +48,7 @@
     <div class="row"><a class="btn" href="#projects">Explore my work <span>→</span></a></div>
   </div>
   <button id="introBtn" type="button"><span class="eq"><i></i><i></i><i></i></span><span id="introTxt">Hear my intro</span></button>
+  <button id="sndCue" type="button"><span class="pulse"></span><span>Tap for sound</span></button>
   <div class="hero-foot">
     <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
     <div class="hero-loc">Kolkata, India</div>
@@ -78,11 +79,11 @@
 </section>
 
 <section id="experience">
-  <div class="wrap xp-grid">
-    <div>
+  <div class="wrap">
+    <div class="shead">
       <div class="label rv">Experience</div>
       <h2 class="h2 rv">Learning.<br>Contributing.<br><em>Growing.</em></h2>
-      <p class="xp-sub rv">A journey shaped by diverse experiences across startups, corporates and family business.</p>
+      <p class="shead-sub rv">A journey shaped by diverse experiences across startups, corporates and family business.</p>
     </div>
     <div class="tl">
       <div class="xp-card rv">
@@ -115,8 +116,10 @@
 
 <section id="projects">
   <div class="wrap">
-    <div class="label rv">Projects &amp; Ventures</div>
-    <h2 class="h2 rv">Things I've <em>built.</em></h2>
+    <div class="shead">
+      <div class="label rv">Projects &amp; Ventures</div>
+      <h2 class="h2 rv">Things I've <em>built.</em></h2>
+    </div>
     <div class="ce-card rv">
       <div>
         <div class="ce-name"><img src="assets/logo-crededge.svg?v=7" alt="" style="display:inline-block;width:.9em;vertical-align:-.12em;margin-right:.35em">CredEdge</div>
@@ -151,19 +154,19 @@
 </section>
 
 <section id="events">
-  <div class="wrap ev-grid">
-    <div class="ev-copy">
+  <div class="wrap">
+    <div class="shead">
       <div class="label rv">Recognition &amp; Events</div>
       <h2 class="h2 rv">Competitions, college events and <em>experiences.</em></h2>
-      <p class="rv">I've won over ₹30,000 in prize money so far, across competitions and college events.</p>
+      <p class="shead-sub cr rv">I've won over ₹30,000 in prize money so far, across competitions and college events.</p>
+    </div>
       <ul class="wins rv">
         <li><b>Winner</b><span>CXO's Roundtable, Global Entrepreneurship Summit 2026, E-Cell IIT Kharagpur</span></li>
         <li><b>Winner</b><span>Bonfire'24 (Shark Tank style) &amp; Nexus'24 (Marketing), BESC Kolkata</span></li>
         <li><b>Runner-up</b><span>CArizma'25, EICASA (ICAI) · Elevator'25, St. Xavier's College · Invictus'26, J.D. Birla</span></li>
         <li><b>Top 8</b><span>Best Manager, Christ University — 600+ participants</span></li>
       </ul>
-    </div>
-    <div class="ev-right rv">
+    <div class="ev-vis rv">
       <div class="stat"><div class="n">₹30,000+</div><div class="c">Prize money won</div></div>
       <div class="polars">
         <figure class="polar"><img src="assets/nexus-2025.jpg" alt="Receiving the Nexus 2025 trophy" loading="lazy"><figcaption class="cap">Nexus 2025</figcaption></figure>
@@ -175,8 +178,10 @@
 
 <section id="gallery">
   <div class="wrap">
-    <div class="label rv">Gallery</div>
-    <h2 class="h2 rv">Moments from the <em>journey.</em></h2>
+    <div class="shead">
+      <div class="label rv">Gallery</div>
+      <h2 class="h2 rv">Moments from the <em>journey.</em></h2>
+    </div>
     <div class="gal-row">
       <div class="gal-item rv"><img src="assets/nexus-2025.jpg" alt="Nexus 2025 trophy moment" loading="lazy"><div class="cap">Nexus 2025 — trophy moment</div></div>
       <div class="gal-item rv"><img src="assets/carizma-stage.jpg" alt="CArizma 2025 on stage" loading="lazy"><div class="cap">CArizma 2025 — on stage</div></div>
@@ -185,17 +190,17 @@
 </section>
 
 <section id="contact">
-  <div class="wrap ct-grid">
-    <div class="ct-copy">
+  <div class="wrap">
+    <div class="shead">
       <div class="label rv">Get in touch</div>
-      <h2 class="h2 rv">Let's build<br>something <em>real.</em></h2>
-      <p class="rv">Whether it's a project, an opportunity, or just a good conversation - I'd love to hear from you.</p>
-      <div class="ct-btns rv">
+      <h2 class="h2 rv">Let's build something <em>real.</em></h2>
+      <p class="shead-sub rv">Whether it's a project, an opportunity, or just a good conversation - I'd love to hear from you.</p>
+    </div>
+    <div class="ct-btns rv">
         <a class="btn" href="mailto:pradyumngoenka2005@gmail.com">Email <span>→</span></a>
         <a class="btn ghost" href="https://www.linkedin.com/in/pradyumn-goenka-026631230/" target="_blank" rel="noopener">LinkedIn <span>→</span></a>
         <a class="btn ghost" href="https://github.com/pradyumngoenka" target="_blank" rel="noopener">GitHub <span>→</span></a>
         <a class="btn ghost" href="Pradyumn_Goenka_CV.pdf" target="_blank" rel="noopener">Download CV <span>↓</span></a>
-      </div>
     </div>
     <div class="quote-card rv">
       <div class="q">"Good ideas.<br>Brighter futures."</div>
@@ -207,7 +212,6 @@
   </footer></div>
 </section>
 
-<audio id="introAudio" src="assets/intro.mp3" preload="none"></audio>
 <script>
 const nav=document.getElementById('nav'),burger=document.getElementById('burger'),links=document.getElementById('navlinks');
 addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
@@ -219,9 +223,16 @@ const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){navA
 secs.forEach(s=>spy.observe(s));
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-const audio=document.getElementById('introAudio'),btn=document.getElementById('introBtn'),txt=document.getElementById('introTxt');
-btn.onclick=()=>{if(audio.paused){audio.play();btn.classList.add('playing');txt.textContent='Playing…'}else{audio.pause();audio.currentTime=0;btn.classList.remove('playing');txt.textContent='Hear my intro'}};
-audio.onended=()=>{btn.classList.remove('playing');txt.textContent='Hear my intro'};
+const heroEl=document.getElementById('hero'),vid=document.getElementById('heroVid'),btn=document.getElementById('introBtn'),txt=document.getElementById('introTxt'),cue=document.getElementById('sndCue');
+let intro=false,armed=!sessionStorage.getItem('sndUsed');
+if(armed)cue.classList.add('on');
+function startIntro(){intro=true;armed=false;sessionStorage.setItem('sndUsed','1');heroEl.classList.add('playing');cue.classList.remove('on');vid.loop=false;vid.muted=false;vid.currentTime=0;vid.play().catch(()=>{});btn.classList.add('playing');txt.textContent='Stop intro'}
+function toIdle(){intro=false;heroEl.classList.remove('playing');vid.muted=true;vid.loop=true;vid.currentTime=0;vid.play().catch(()=>{});btn.classList.remove('playing');txt.textContent='Hear my intro'}
+btn.onclick=()=>{intro?toIdle():startIntro()};
+cue.onclick=e=>{e.stopPropagation();startIntro()};
+heroEl.addEventListener('pointerdown',e=>{if(!armed||intro)return;if(e.target.closest('a,button'))return;startIntro()});
+heroEl.addEventListener('wheel',()=>{if(armed&&!intro)startIntro()},{passive:true});
+vid.onended=()=>{if(intro)toIdle()};
 </script>
 </body>
 </html>
