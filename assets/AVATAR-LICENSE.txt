@@ -1,5 +1,5 @@
-3D avatar: "Male Adult 12" from models.codelove.in (Rigged Adults collection)
-Source: https://models.codelove.in/models/male-adult-12/
+3D avatar: "Businessman 02" from models.codelove.in (Professions collection)
+Source: https://models.codelove.in/models/business-male-02/
 License: MIT (commercial use, modification and redistribution allowed; copyright notice and license text kept with the files)
 Animation clips: models.codelove.in animation library (walk, idle, gestic_talk, wave) merged into assets/avatar_rigged.glb
 Voice: Microsoft Edge neural TTS (en-IN-PrabhatNeural), generated locally, free tier.
