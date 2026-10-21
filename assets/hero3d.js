@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
 const host = document.getElementById('hero3d');
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -159,7 +160,9 @@ function play(name, fade = 0.25) {
   if (cur) { next.crossFadeFrom(cur, fade, false); }
   cur = next;
 }
-new GLTFLoader().load('assets/avatar.glb', (g) => {
+const avatarLoader = new GLTFLoader();
+avatarLoader.setMeshoptDecoder(MeshoptDecoder);
+avatarLoader.load('assets/avatar.glb', (g) => {
   avatar = g.scene;
   avatar.traverse(o => { if (o.isMesh) { o.frustumCulled = false; o.castShadow = true; } });
   scene.add(avatar);
@@ -218,13 +221,15 @@ new IntersectionObserver(es => es.forEach(e => running = e.isIntersecting), { th
     set('Spine02', br * 0.7, Math.sin(t * 0.9) * 0.012, 0);
     set('neck', Math.sin(t * 1.1) * 0.02, Math.sin(t * 0.55) * 0.05, 0);
     set('Head', Math.sin(t * 0.8) * 0.025, Math.sin(t * 0.45) * 0.06, 0);
-    set('LeftArm', 0, 0, Math.sin(t * 1.7 + 0.5) * 0.012);
-    set('RightArm', 0, 0, -Math.sin(t * 1.7 + 0.5) * 0.012);
+    set('LeftArm', 0, 0, 0.52 + Math.sin(t * 1.7 + 0.5) * 0.015);
+    set('RightArm', 0, 0, -0.52 - Math.sin(t * 1.7 + 0.5) * 0.015);
+    set('LeftForeArm', 0, 0, 0.12);
+    set('RightForeArm', 0, 0, -0.12);
     if (procTalk > 0) {
       procTalk -= dt;
-      const g = Math.sin(t * 3.2) * 0.16;
-      set('RightArm', -0.55 + g * 0.4, 0, -0.35 + g * 0.2);
-      set('RightForeArm', -0.5 + g * 0.5, 0, 0);
+      const g = Math.sin(t * 3.2) * 0.22;
+      set('RightArm', -0.95 + g * 0.5, -0.15, -0.30 + g * 0.25);
+      set('RightForeArm', -0.85 + g * 0.6, 0, 0);
       set('Head', Math.sin(t * 2.1) * 0.05, Math.sin(t * 1.3) * 0.08, 0);
     }
   }
