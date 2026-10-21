@@ -30,6 +30,9 @@ key.shadow.camera.top = 3.2; key.shadow.camera.bottom = -0.5;
 key.shadow.camera.far = 14; key.shadow.radius = 8; key.shadow.bias = -0.0004;
 scene.add(key);
 const rim = new THREE.DirectionalLight(0xffe4c8, 1.5); rim.position.set(-2.4, 2.7, -2.9); scene.add(rim);
+// soft face fill so the avatar reads clearly against the warm room (no shadows, tight falloff)
+const faceFill = new THREE.PointLight(0xffe8d5, 5.0, 3.2, 2);
+faceFill.position.set(1.35, 1.6, 1.7); scene.add(faceFill);
 
 // ---- room: floor + back wall + side wall (L corner), alpha-faded edges ----
 function wallTexture() {
@@ -204,8 +207,9 @@ function resize() {
   baseTgt.set(mob ? 0.85 : 0.45, mob ? 0.82 : 0.94, 0);
 }
 resize(); addEventListener('resize', resize);
-let mx = 0, my = 0;
-addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5); my = (e.clientY / innerHeight - .5); }, { passive: true });
+let mx = 0, my = 0, lastPtr = 0, hYaw = 0, hPitch = 0;
+const finePtr = matchMedia('(pointer:fine)').matches;
+addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5); my = (e.clientY / innerHeight - .5); lastPtr = performance.now(); }, { passive: true });
 let running = true, intro0 = performance.now();
 new IntersectionObserver(es => es.forEach(e => running = e.isIntersecting), { threshold: 0.02 }).observe(host);
 (function loop() {
@@ -216,11 +220,16 @@ new IntersectionObserver(es => es.forEach(e => running = e.isIntersecting), { th
   if (avatar && procIdle) {
     const B = (n) => bones[n];
     const set = (n, x, y, z) => { const b = B(n); if (b && b.userData.base) b.rotation.set(b.userData.base.x + x, b.userData.base.y + y, b.userData.base.z + z); };
+    // subtle cursor-follow: head/neck ease toward pointer, recenter when idle
+    let tYaw = 0, tPitch = 0;
+    if (finePtr && performance.now() - lastPtr < 3500) { tYaw = mx * 0.22; tPitch = my * 0.12; }
+    const damp = Math.min(1, dt * 3.2);
+    hYaw += (tYaw - hYaw) * damp; hPitch += (tPitch - hPitch) * damp;
     const br = Math.sin(t * 1.7) * 0.018;
     set('Spine01', br, 0, 0);
-    set('Spine02', br * 0.7, Math.sin(t * 0.9) * 0.012, 0);
-    set('neck', Math.sin(t * 1.1) * 0.02, Math.sin(t * 0.55) * 0.05, 0);
-    set('Head', Math.sin(t * 0.8) * 0.025, Math.sin(t * 0.45) * 0.06, 0);
+    set('Spine02', br * 0.7, Math.sin(t * 0.9) * 0.012 - hYaw * 0.10, -hYaw * 0.06);
+    set('neck', Math.sin(t * 1.1) * 0.02 + hPitch * 0.35, Math.sin(t * 0.55) * 0.05 - hYaw * 0.45, 0);
+    set('Head', Math.sin(t * 0.8) * 0.025 + hPitch * 0.6, Math.sin(t * 0.45) * 0.06 - hYaw * 0.75, 0);
     set('LeftArm', 0, 0, 0.52 + Math.sin(t * 1.7 + 0.5) * 0.015);
     set('RightArm', 0, 0, -0.52 - Math.sin(t * 1.7 + 0.5) * 0.015);
     set('LeftForeArm', 0, 0, 0.12);
