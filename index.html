@@ -532,7 +532,7 @@ const playClip=n=>{if(window.heroAvatar)window.heroAvatar.play(n)};
 // intro audio (tap-to-play; browsers block autoplay)
 const introBtn=document.getElementById('introBtn'),introTxt=document.getElementById('introBtnTxt'),cap=document.getElementById('caption');
 const introAudio=new Audio('assets/intro.mp3');
-const lines=[[0,"Hello, I'm Pradyumn Goenka."],[2000,"I'm a final-year B.Com student at St. Xavier's College, Kolkata."],[7500,"I'm passionate about marketing, finance, and AI."],[12300,"Welcome to my portfolio."]];
+const lines=[[0,"Hello, I'm Pradyumn Goenka."],[1987,"I'm a final-year B.Com student at St. Xavier's College, Kolkata."],[6683,"I'm passionate about marketing, finance, and AI."],[9843,"Welcome to my portfolio."]];
 let timers=[];
 introBtn.addEventListener('click',()=>{
   if(!introAudio.paused){introAudio.pause();introAudio.currentTime=0;endIntro();return}
