@@ -1,6 +1,6 @@
 3D avatar: "Suit_Male" chibi cartoon character from Quaternius "Animated Characters" pack (50+ rigged characters)
 Source: https://quaternius.com (pack mirror: Google Drive folder 1sNi1AfenfPRrvRt5yfaj5QMMd6KKcUJ5)
 License: CC0 (public domain; free for personal and commercial use, no attribution required)
-Modifications: recolored materials (skin tone, brown hair, navy suit, white shirt, blue tie) and animation clip renames (Walk->walk, Idle->idle, Idle copy->talk) to match site wiring.
-Bundled clips: walk, idle, talk (idle-based) plus the pack's full set (Run, Jump, Victory, etc.)
+Modifications: recolored materials (skin tone, brown hair, navy suit, white shirt, blue tie), added white shoes,
+fuller trouser legs, smaller hands; animation clip renames (Walk->walk, Idle->idle, Idle copy->talk) to match site wiring.
 Voice: Microsoft Edge neural TTS (en-IN-PrabhatNeural), generated locally, free tier.
