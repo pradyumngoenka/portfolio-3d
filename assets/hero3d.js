@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { Reflector } from 'three/addons/objects/Reflector.js';
 
 const host = document.getElementById('hero3d');
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -67,29 +68,34 @@ const backWall = new THREE.Mesh(new THREE.PlaneGeometry(18, 6.5), wallMat);
 backWall.position.set(0.9, 3.25, -1.35); scene.add(backWall);
 const sideWall = new THREE.Mesh(new THREE.PlaneGeometry(10, 6.5), wallMat.clone());
 sideWall.rotation.y = -Math.PI / 2; sideWall.position.set(3.4, 3.25, 0.8); scene.add(sideWall);
+const mirror = new Reflector(new THREE.CircleGeometry(8.5, 48), {
+  clipBias: 0.003, textureWidth: 1024, textureHeight: 1024, color: 0x8a4c2e });
+mirror.rotation.x = -Math.PI / 2; mirror.position.set(0.6, -0.002, 1.2); scene.add(mirror);
 const floor = new THREE.Mesh(new THREE.CircleGeometry(8.5, 48),
-  new THREE.MeshStandardMaterial({ map: floorTexture(), transparent: true, roughness: 0.95 }));
+  new THREE.MeshStandardMaterial({ map: floorTexture(), transparent: true, opacity: 0.68, roughness: 0.4, metalness: 0.1 }));
 floor.rotation.x = -Math.PI / 2; floor.position.set(0.6, 0, 1.2); floor.receiveShadow = true; scene.add(floor);
 
-// ---- desk (reel: wide light-wood top, dark walnut angled T-legs) ----
+// ---- desk (video frame: dark walnut top, black standing-desk frame) ----
 const desk = new THREE.Group();
-const oak = new THREE.MeshStandardMaterial({ color: 0xdfb98a, roughness: 0.55, metalness: 0.04 });
-const walnut = new THREE.MeshStandardMaterial({ color: 0x4a3320, roughness: 0.5, metalness: 0.25 });
-const darkMetal = new THREE.MeshStandardMaterial({ color: 0x211d1a, roughness: 0.45, metalness: 0.35 });
-const top = new THREE.Mesh(new RoundedBoxGeometry(1.6, 0.028, 0.66, 3, 0.01), oak);
+const walnutTop = new THREE.MeshStandardMaterial({ color: 0x6e4a2c, roughness: 0.46, metalness: 0.06 });
+const blackMetal = new THREE.MeshStandardMaterial({ color: 0x191715, roughness: 0.42, metalness: 0.5 });
+const top = new THREE.Mesh(new RoundedBoxGeometry(1.52, 0.032, 0.62, 3, 0.01), walnutTop);
 top.position.y = 0.735; top.castShadow = top.receiveShadow = true; desk.add(top);
-// angled T-legs: column slants inward toward top, flat wide foot
-[-0.66, 0.66].forEach(x => {
+// standing-desk frame: lift columns + T feet + under-top brackets
+[-0.62, 0.62].forEach(x => {
   const leg = new THREE.Group();
-  const col = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.74, 0.045), walnut);
-  col.position.set(0, 0.36, 0); col.rotation.x = 0.09; col.castShadow = true; leg.add(col);
-  const foot = new THREE.Mesh(new RoundedBoxGeometry(0.06, 0.028, 0.52, 2, 0.01), walnut);
-  foot.position.set(0, 0.014, 0.02); foot.castShadow = true; leg.add(foot);
-  const bracket = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.03, 0.42), walnut);
-  bracket.position.set(0, 0.705, -0.03); leg.add(bracket);
+  const col = new THREE.Mesh(new RoundedBoxGeometry(0.075, 0.70, 0.075, 2, 0.012), blackMetal);
+  col.position.set(0, 0.365, 0); col.castShadow = true; leg.add(col);
+  const foot = new THREE.Mesh(new RoundedBoxGeometry(0.10, 0.026, 0.56, 2, 0.01), blackMetal);
+  foot.position.set(0, 0.013, 0.03); foot.castShadow = true; leg.add(foot);
+  const bracket = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.035, 0.5), blackMetal);
+  bracket.position.set(0, 0.70, 0); bracket.castShadow = true; leg.add(bracket);
   leg.position.set(x, 0, 0);
   desk.add(leg);
 });
+// small controller under right front edge
+const ctrl = new THREE.Mesh(new RoundedBoxGeometry(0.09, 0.02, 0.05, 2, 0.006), blackMetal);
+ctrl.position.set(0.5, 0.712, 0.26); desk.add(ctrl);
 function codeTexture(seed0) {
   const c = document.createElement('canvas'); c.width = 512; c.height = 320;
   const g = c.getContext('2d');
@@ -115,14 +121,14 @@ function codeTexture(seed0) {
 }
 function makeMonitor(seed) {
   const m = new THREE.Group();
-  const bez = new THREE.Mesh(new RoundedBoxGeometry(0.57, 0.35, 0.02, 2, 0.008), darkMetal);
+  const bez = new THREE.Mesh(new RoundedBoxGeometry(0.57, 0.35, 0.02, 2, 0.008), blackMetal);
   bez.castShadow = true; m.add(bez);
   const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.545, 0.325),
     new THREE.MeshBasicMaterial({ map: codeTexture(seed) }));
   scr.position.z = 0.0115; m.add(scr);
-  const neck = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.11, 0.026), darkMetal);
+  const neck = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.11, 0.026), blackMetal);
   neck.position.set(0, -0.225, -0.012); neck.castShadow = true; m.add(neck);
-  const bs = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.095, 0.014, 20), darkMetal);
+  const bs = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.095, 0.014, 20), blackMetal);
   bs.position.set(0, -0.282, 0.005); bs.scale.z = 0.72; bs.castShadow = true; m.add(bs);
   return m;
 }
@@ -142,12 +148,6 @@ kb.position.set(-0.04, 0.756, 0.12); kb.rotation.y = 0.03; kb.castShadow = true;
 const mouse = new THREE.Mesh(new RoundedBoxGeometry(0.052, 0.024, 0.085, 2, 0.012),
   new THREE.MeshStandardMaterial({ color: 0x2c2724, roughness: 0.55 }));
 mouse.position.set(0.26, 0.761, 0.12); mouse.castShadow = true; desk.add(mouse);
-// PC tower under desk, warm LED line
-const tower = new THREE.Mesh(new RoundedBoxGeometry(0.17, 0.38, 0.36, 2, 0.01),
-  new THREE.MeshStandardMaterial({ color: 0x2a211b, roughness: 0.5, metalness: 0.2 }));
-tower.position.set(-0.52, 0.19, 0.02); tower.castShadow = true; desk.add(tower);
-const led = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.28, 0.01), new THREE.MeshBasicMaterial({ color: 0xff8a3d }));
-led.position.set(-0.43, 0.19, 0.13); desk.add(led);
 desk.position.set(0.55, 0, -0.25);
 scene.add(desk);
 
@@ -177,7 +177,7 @@ avatarLoader.load('assets/avatar.glb', (g) => {
   });
   // bone refs + bind pose for procedural idle/talk
   bones = {}; avatar.traverse(o => { if (o.isBone) { bones[o.name] = o; o.userData.base = o.rotation.clone(); } });
-  avatar.position.x = 2.6;
+  avatar.position.z = 0.34; avatar.position.x = 2.6;
   play('walk', 0);
   const t0 = performance.now();
   (function walkIn() {
@@ -200,8 +200,8 @@ function resize() {
   renderer.setSize(w, h, false);
   camera.aspect = w / h; camera.updateProjectionMatrix();
   const mob = w < 520;
-  baseCam.set(mob ? 0.45 : 0.05, mob ? 1.18 : 1.06, mob ? 5.4 : 3.9);
-  baseTgt.set(mob ? 0.8 : 0.0, mob ? 0.82 : 1.0, 0);
+  baseCam.set(mob ? 0.5 : 0.1, mob ? 1.2 : 1.04, mob ? 6.4 : 4.7);
+  baseTgt.set(mob ? 0.85 : 0.45, mob ? 0.82 : 0.94, 0);
 }
 resize(); addEventListener('resize', resize);
 let mx = 0, my = 0;
