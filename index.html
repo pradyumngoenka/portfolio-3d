@@ -72,6 +72,8 @@ nav.solid{background:transparent}
 .hero-figure img{position:relative;z-index:2;width:min(100%,430px);height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(60,18,2,.45))}
 #hero3d{position:absolute;inset:0;z-index:2;width:100%;height:100%}
 #hero3d canvas{display:block;width:100%!important;height:100%!important}
+.hero-video{position:absolute;right:0;top:0;height:100%;width:auto;max-width:none;object-fit:cover;z-index:2;display:block;
+ -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 26%);mask-image:linear-gradient(to right,transparent 0%,#000 26%)}
 .float-tag{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mono-dim)}
 .float-stat{top:14%;right:5%}
 .scroll-hint{position:absolute;bottom:34px;right:44px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mono-dim)}
@@ -243,6 +245,7 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
   .hero-figure{position:relative;inset:auto;min-height:0;margin-top:18px;padding-bottom:10px;overflow:visible;pointer-events:auto}
   .hero-figure img{width:min(78%,340px);margin:0 auto}
   #hero3d{position:relative;inset:auto;height:480px;width:100%}
+  .hero-video{position:relative;inset:auto;height:auto;width:100%;aspect-ratio:770/624;object-fit:cover;-webkit-mask-image:none;mask-image:none;border-radius:10px}
   .hero-figure .floor{bottom:0}
   .intro-btn{bottom:-6px;left:50%;right:auto;transform:translateX(-50%)}
   .caption{bottom:52px;left:50%;right:auto;transform:translateX(-50%)}
@@ -307,7 +310,7 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
       <span class="float-tag float-stat">&#8377;30K+ cash prizes</span>
       <button class="intro-btn" id="introBtn" type="button"><span class="dot"></span><span id="introBtnTxt">Hear my intro</span></button>
       <div class="caption" id="caption"></div>
-      <div id="hero3d" role="img" aria-label="3D scene: avatar of Pradyumn Goenka at his desk"></div>
+      <video class="hero-video" src="assets/hero-loop.mp4" poster="assets/hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video: avatar of Pradyumn Goenka at his desk"></video>
     </div>
   </div>
   <div class="scroll-hint">Scroll<span class="line"></span></div>
@@ -518,7 +521,7 @@ footer{border-top:1px solid rgba(255,240,225,.22);padding:26px 44px;display:flex
   </footer>
 </section>
 
-<script type="module" src="assets/hero3d.js"></script>
+<!-- <script type="module" src="assets/hero3d.js"></script> disabled for video-hero preview -->
 <script>
 // reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
