@@ -177,8 +177,8 @@ footer{border-top:1px solid rgba(244,236,220,.12);padding:1.6rem 0;display:flex;
 
 /* desktop hero: real text over blurred/masked baked block */
 .hero-dsk{position:absolute;inset:0;z-index:3;display:flex;align-items:center;pointer-events:none}
-.hd-scrim{position:absolute;inset:0;backdrop-filter:blur(30px) brightness(.62) saturate(.85);-webkit-backdrop-filter:blur(30px) brightness(.62) saturate(.85);
-  -webkit-mask:linear-gradient(90deg,#000 46%,transparent 70%);mask:linear-gradient(90deg,#000 46%,transparent 70%)}
+.hd-scrim{position:absolute;inset:0;backdrop-filter:blur(42px) brightness(.58) saturate(.85);-webkit-backdrop-filter:blur(42px) brightness(.58) saturate(.85);
+  -webkit-mask:linear-gradient(90deg,#000 57%,transparent 78%);mask:linear-gradient(90deg,#000 57%,transparent 78%)}
 .hd-inner{position:relative;padding-left:4vw;max-width:46rem;color:#fff;pointer-events:auto}
 .hd-eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,236,220,.85);display:flex;align-items:center;gap:1rem}
 .hd-eyebrow::after{content:"";width:64px;height:1px;background:rgba(244,236,220,.5)}
