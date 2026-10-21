@@ -54,7 +54,7 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- about ---------- */
 #about{background:var(--cream);padding:7.5rem 0 6rem}
-.about-grid{display:grid;grid-template-columns:1.05fr .85fr;gap:5vw;align-items:center};margin-top:3.4rem
+.about-grid{display:grid;grid-template-columns:1.05fr .85fr;gap:5vw;align-items:center;margin-top:3.4rem}
 .about-txt p{color:var(--on-cream-mut);margin:1.4rem 0 0;max-width:34rem}
 .about-edu{display:flex;gap:1rem;align-items:center;margin-top:2.2rem;padding-top:1.8rem;border-top:1px solid rgba(43,23,8,.15)}
 .about-edu img{width:58px;height:auto}
