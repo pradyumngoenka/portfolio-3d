@@ -1,6 +1,7 @@
 :root{
   --cream:#f4ecdc; --cream2:#ece0c9; --brown:#462511; --brown2:#3a1d0d; --deep:#2b1407;
   --ink:#2b1708; --terra:#c96f3f; --terra2:#b25c2e; --gold:#d9a05b;
+  --rust:#7c3f21; --rust2:#6b3419;
   --on-brown:#f4ecdc; --on-brown-mut:rgba(244,236,220,.66); --on-cream-mut:rgba(43,23,8,.72);
   --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
 }
@@ -85,7 +86,8 @@ a{color:inherit;text-decoration:none}
 .about-ph .ring{position:absolute;inset:-1.4rem -1.4rem auto auto;width:120px;height:120px;border:1px solid var(--terra);border-radius:50%;opacity:.5}
 
 /* ---------- experience ---------- */
-#experience{background:var(--brown);color:var(--on-brown);padding:7.5rem 0}
+#experience{background:var(--rust);color:var(--on-brown);padding:7.5rem 0}
+#experience,#projects{--on-brown-mut:#f7efe0}
 .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch;margin:3.4rem auto 0}
 .xp-card{position:relative;background:rgba(244,236,220,.06);border:1px solid rgba(244,236,220,.12);border-radius:16px;
   padding:1.5rem 1.6rem;display:flex;flex-direction:column;transition:transform .35s,background .35s,border-color .35s}
@@ -100,7 +102,7 @@ a{color:inherit;text-decoration:none}
 .xp-desc{margin-top:.9rem;font-size:.92rem;color:var(--on-brown-mut);flex:1;text-align:justify;-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
 
 /* ---------- projects ---------- */
-#projects{background:var(--brown2);color:var(--on-brown);padding:7.5rem 0}
+#projects{background:var(--rust2);color:var(--on-brown);padding:7.5rem 0}
 .ce-card{display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center;background:rgba(244,236,220,.05);
   border:1px solid rgba(244,236,220,.12);border-radius:22px;padding:3rem;margin-top:2.6rem}
 .ce-name{font-family:var(--serif);font-size:2.6rem;font-weight:600;letter-spacing:.01em}
