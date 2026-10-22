@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
@@ -21,37 +21,18 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#events">Events</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section id="hero">
-  <video id="heroVid" autoplay muted loop playsinline poster="assets/hero-video-poster.jpg" src="assets/hero-video.mp4?v=2"></video>
+  <video id="heroVid" autoplay muted loop playsinline poster="assets/hero-video-poster.jpg" src="assets/hero-video.mp4?v=3"></video>
   <div class="veil"></div>
-  <div class="hero-dsk">
-      <div class="hd-scrim"></div>
-      <div class="hd-inner">
-        <div class="hd-eyebrow">Learning &middot; Building &middot; Growing</div>
-        <div class="hd-name">Pradyumn</div>
-        <div class="hd-tag">Building <em>experience</em>,<br>one project at a <em>time</em>.</div>
-        <p class="hd-sub">Final-year B.Com student at St. Xavier's College, Kolkata, passionate about marketing, finance, and AI.</p>
-        <div class="hd-cta">
-          <a class="hd-b1" href="#about">Explore my work <span>&rarr;</span></a>
-          <a class="hd-b2" href="#contact">Let's connect</a>
-        </div>
-      </div>
-    </div>
-    <div class="hero-mob">
-    <div class="nm">Pradyumn Goenka</div>
-    <div class="tg">Building experience, one project at a time.</div>
-    <div class="row"><a class="btn" href="#projects">Explore my work <span>→</span></a></div>
-  </div>
-  <button id="introBtn" type="button"><span class="eq"><i></i><i></i><i></i></span><span id="introTxt">Hear my intro</span></button>
-  <button id="sndCue" type="button"><span class="pulse"></span><span>Tap for sound</span></button>
-  <div class="hero-foot">
-    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
-    <div class="hero-loc">Kolkata, India</div>
+  <a class="hotspot" id="hsWork" href="#about" aria-label="Explore my work"></a>
+  <a class="hotspot" id="hsConnect" href="#contact" aria-label="Let's connect"></a>
+  <div class="hero-bar">
+    <button id="introBtn" type="button"><span class="eq"><i></i><i></i><i></i></span><span id="introTxt">Hear my intro</span></button>
+    <button id="sndCue" type="button"><span class="pulse"></span><span>Tap for sound</span></button>
   </div>
 </section>
 
@@ -170,25 +151,10 @@
         <li><b>Runner-up</b><span>CArizma'25, EICASA (ICAI) · Elevator'25, St. Xavier's College · Invictus'26, J.D. Birla</span></li>
         <li><b>Top 8</b><span>Best Manager, Christ University — 600+ participants</span></li>
       </ul>
-    <div class="ev-vis rv">
-      <div class="stat"><div class="n">₹30,000+</div><div class="c">Prize money won</div></div>
-      <div class="polars">
-        <figure class="polar"><img src="assets/nexus-2025.jpg" alt="Receiving the Nexus 2025 trophy" loading="lazy"><figcaption class="cap">Nexus 2025</figcaption></figure>
-        <figure class="polar"><img src="assets/carizma-stage.jpg" alt="On stage at CArizma 2025" loading="lazy"><figcaption class="cap">CArizma 2025</figcaption></figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="gallery">
-  <div class="wrap">
-    <div class="shead">
-      <div class="label rv">Gallery</div>
-      <h2 class="h2 rv">Moments from the <em>journey.</em></h2>
-    </div>
-    <div class="gal-row">
-      <div class="gal-item rv"><img src="assets/nexus-2025.jpg" alt="Nexus 2025 trophy moment" loading="lazy"><div class="cap">Nexus 2025 — trophy moment</div></div>
-      <div class="gal-item rv"><img src="assets/carizma-stage.jpg" alt="CArizma 2025 on stage" loading="lazy"><div class="cap">CArizma 2025 — on stage</div></div>
+    <div class="ev-stat rv"><div class="stat"><div class="n">₹30,000+</div><div class="c">Prize money won</div></div></div>
+    <div class="ev-photos rv">
+      <figure class="ev-photo"><img src="assets/nexus-2025.jpg" alt="Receiving the Nexus 2025 trophy" loading="lazy"><figcaption>Nexus 2025 — trophy moment</figcaption></figure>
+      <figure class="ev-photo"><img src="assets/carizma-stage.jpg" alt="On stage at CArizma 2025" loading="lazy"><figcaption>CArizma 2025 — on stage</figcaption></figure>
     </div>
   </div>
 </section>
@@ -237,6 +203,18 @@ cue.onclick=e=>{e.stopPropagation();startIntro()};
 heroEl.addEventListener('pointerdown',e=>{if(!armed||intro)return;if(e.target.closest('a,button'))return;startIntro()});
 heroEl.addEventListener('wheel',()=>{if(armed&&!intro)startIntro()},{passive:true});
 vid.onended=()=>{if(intro)toIdle()};
+const spots=[{id:'hsWork',x:.052,y:.685,w:.155,h:.08},{id:'hsConnect',x:.215,y:.685,w:.135,h:.08}];
+function placeSpots(){
+  const w=heroEl.clientWidth,h=vid.clientHeight,s=Math.max(w/1280,h/720);
+  const pv=v=>v==='center'?50:(v==='left'||v==='top')?0:(v==='right'||v==='bottom')?100:parseFloat(v);
+  const cs=getComputedStyle(vid).objectPosition.split(' ');
+  const ox=(w-1280*s)*pv(cs[0])/100,oy=(h-720*s)*pv(cs[1])/100;
+  spots.forEach(sp=>{const el=document.getElementById(sp.id);
+    el.style.left=(ox+sp.x*1280*s)+'px';el.style.top=(oy+sp.y*720*s)+'px';
+    el.style.width=(sp.w*1280*s)+'px';el.style.height=(sp.h*720*s)+'px'});
+}
+addEventListener('resize',placeSpots);
+placeSpots();
 </script>
 </body>
 </html>
