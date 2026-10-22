@@ -160,5 +160,3 @@ footer{border-top:1px solid rgba(244,236,220,.12);padding:1.6rem 0;display:flex;
 #sndCue.on{display:inline-flex}
 #sndCue .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:sndp 1.6s ease-out infinite}
 @keyframes sndp{0%{box-shadow:0 0 0 0 rgba(217,160,91,.55)}100%{box-shadow:0 0 0 12px rgba(217,160,91,0)}}
-#hero.playing video{object-fit:contain;object-position:center center}
-#hero.playing .hotspot{display:none}
