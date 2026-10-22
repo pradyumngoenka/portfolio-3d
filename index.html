@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
 
@@ -26,10 +26,16 @@
 </nav>
 
 <section id="hero">
-  <video id="heroVid" autoplay muted loop playsinline poster="assets/hero-video-poster.jpg" src="assets/hero-video.mp4?v=3"></video>
+  <video id="heroVid" autoplay muted loop playsinline poster="assets/hero-video-poster.jpg?v=2" src="assets/hero-video.mp4?v=4"></video>
   <div class="veil"></div>
-  <a class="hotspot" id="hsWork" href="#about" aria-label="Explore my work"></a>
-  <a class="hotspot" id="hsConnect" href="#contact" aria-label="Let's connect"></a>
+  <div class="hero-copy">
+    <h1 class="hc-name">Pradyumn</h1>
+    <p class="hc-tag">Building <em>experience,</em><br>one project at a time.</p>
+    <div class="hc-cta">
+      <a class="hc-btn solid" href="#about">Explore my work <span aria-hidden="true">&rarr;</span></a>
+      <a class="hc-btn ghost" href="#contact">Let's connect</a>
+    </div>
+  </div>
   <div class="hero-bar">
     <button id="introBtn" type="button"><span class="eq"><i></i><i></i><i></i></span><span id="introTxt">Hear my intro</span></button>
     <button id="sndCue" type="button"><span class="pulse"></span><span>Tap for sound</span></button>
@@ -203,18 +209,6 @@ cue.onclick=e=>{e.stopPropagation();startIntro()};
 heroEl.addEventListener('pointerdown',e=>{if(!armed||intro)return;if(e.target.closest('a,button'))return;startIntro()});
 heroEl.addEventListener('wheel',()=>{if(armed&&!intro)startIntro()},{passive:true});
 vid.onended=()=>{if(intro)toIdle()};
-const spots=[{id:'hsWork',x:.052,y:.685,w:.155,h:.08},{id:'hsConnect',x:.215,y:.685,w:.135,h:.08}];
-function placeSpots(){
-  const w=heroEl.clientWidth,h=vid.clientHeight,s=Math.max(w/1280,h/720);
-  const pv=v=>v==='center'?50:(v==='left'||v==='top')?0:(v==='right'||v==='bottom')?100:parseFloat(v);
-  const cs=getComputedStyle(vid).objectPosition.split(' ');
-  const ox=(w-1280*s)*pv(cs[0])/100,oy=(h-720*s)*pv(cs[1])/100;
-  spots.forEach(sp=>{const el=document.getElementById(sp.id);
-    el.style.left=(ox+sp.x*1280*s)+'px';el.style.top=(oy+sp.y*720*s)+'px';
-    el.style.width=(sp.w*1280*s)+'px';el.style.height=(sp.h*720*s)+'px'});
-}
-addEventListener('resize',placeSpots);
-placeSpots();
 </script>
 </body>
 </html>
