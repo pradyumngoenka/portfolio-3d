@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
   .hc-tag br{display:none}
   .hc-cta{justify-content:center;margin-top:1.15rem;gap:.7rem}
   .hc-btn{padding:.75rem 1.15rem;font-size:.7rem}
-  .hero-bar{position:static;flex:none;height:76px}
+  #hero .hero-bar{position:static;flex:none;height:76px}
 }
 .hero-bar{position:absolute;left:0;right:0;bottom:0;height:84px;background:var(--deep);display:flex;align-items:center;justify-content:center;gap:1rem;z-index:5}
 #introBtn{display:inline-flex;align-items:center;gap:.6rem;
