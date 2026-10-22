@@ -87,14 +87,14 @@ a{color:inherit;text-decoration:none}
 .xp-card{position:relative;background:rgba(244,236,220,.06);border:1px solid rgba(244,236,220,.12);border-radius:16px;
   padding:1.5rem 1.6rem;display:flex;flex-direction:column;transition:transform .35s,background .35s,border-color .35s}
 .xp-card:hover{transform:translateY(-4px);background:rgba(244,236,220,.09);border-color:rgba(217,160,91,.45)}
-.xp-top{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.xp-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.55rem}
 .xp-logo{width:52px;height:52px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
 .xp-logo img{width:40px;height:40px;object-fit:contain}
 .xp-logo.mono{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:#fff;background:linear-gradient(135deg,var(--terra),#8a4a2a)}
 .xp-co{font-family:var(--serif);font-size:1.25rem;font-weight:600}
 .xp-role{font-size:.82rem;color:var(--gold);letter-spacing:.04em}
-.xp-dates{flex-basis:100%;margin-top:.55rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-brown-mut);white-space:nowrap}
-.xp-desc{margin-top:.9rem;font-size:.92rem;color:var(--on-brown-mut);flex:1}
+.xp-dates{margin-top:.25rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-brown-mut);white-space:nowrap}
+.xp-desc{margin-top:.9rem;font-size:.92rem;color:var(--on-brown-mut);flex:1;text-align:justify;-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
 
 /* ---------- projects ---------- */
 #projects{background:var(--brown2);color:var(--on-brown);padding:7.5rem 0}
