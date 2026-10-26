@@ -81,6 +81,8 @@ a{color:inherit;text-decoration:none}
 .about-edu img{width:58px;height:auto}
 .about-edu .t1{font-family:var(--serif);font-size:1.05rem;font-weight:600}
 .about-edu .t2{font-size:.85rem;color:var(--on-cream-mut)}
+.about-edu.cert{margin-top:1.2rem;padding-top:0;border-top:none}
+.cert-badge{width:14px;height:14px;flex:none;margin:0 22px;border-radius:4px;background:linear-gradient(135deg,var(--terra),var(--gold))}
 .about-ph{position:relative}
 .about-ph .arch{border-radius:999px 999px 18px 18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(43,20,7,.45)}
 .about-ph .ring{position:absolute;inset:-1.4rem -1.4rem auto auto;width:120px;height:120px;border:1px solid var(--terra);border-radius:50%;opacity:.5}
